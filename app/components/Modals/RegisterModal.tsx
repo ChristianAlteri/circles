@@ -16,6 +16,7 @@ import Heading from "../Heading";
 import Input from "../Inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -97,9 +98,9 @@ const RegisterModal = () => {
                 {/* Change this to Facebook login and Instagram too */}
                 <Button 
                     outline
-                    label="Continue with Facebook"
-                    icon={AiFillFacebook}
-                    onClick={() => {}}
+                    label="Continue with Github"
+                    icon={AiFillGithub}
+                    onClick={() => signIn('github')}
                 />
                 <div
                     className="
