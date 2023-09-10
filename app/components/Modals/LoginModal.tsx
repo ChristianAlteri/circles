@@ -102,9 +102,9 @@ const LoginModal = () => {
                 {/* Change this to Facebook login and Instagram too or depop*/}
                 <Button 
                     outline
-                    label="Continue with Facebook"
-                    icon={AiFillFacebook}
-                    onClick={() => {}}
+                    label="Continue with Github"
+                    icon={AiFillGithub}
+                    onClick={() => signIn('github')}
                 />
                 <div
                     className="
