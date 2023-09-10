@@ -96,7 +96,7 @@ const LoginModal = () => {
                     outline
                     label="Continue with Google"
                     icon={FcGoogle}
-                    onClick={() => {}}
+                    onClick={() => signIn('google')}
                 />
 
                 {/* Change this to Facebook login and Instagram too or depop*/}

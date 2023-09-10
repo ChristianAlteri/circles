@@ -92,7 +92,7 @@ const RegisterModal = () => {
                     outline
                     label="Continue with Google"
                     icon={FcGoogle}
-                    onClick={() => {}}
+                    onClick={() => signIn('google')}
                 />
 
                 {/* Change this to Facebook login and Instagram too */}
