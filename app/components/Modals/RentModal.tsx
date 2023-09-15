@@ -15,7 +15,9 @@ import CategoryInput from "../Inputs/CategoryInput";
 import CountrySelect from "../Inputs/CountrySelect";
 import dynamic from "next/dynamic";
 import Counter from "../Inputs/Counter";
+import Input from "../Inputs/Input";
 import ImageUpload from "../Inputs/ImageUpload";
+
 
 enum STEPS {
     CATEGORY = 0,
@@ -32,6 +34,7 @@ const RentModal = () => {
     const rentModal = useRentModal()
 
     const [step, setStep] = useState(STEPS.CATEGORY);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {
         register,
@@ -157,6 +160,16 @@ const RentModal = () => {
                 onChange={(value) => setCustomValue('stockCount', value)}
                 />
                 <hr />
+                <Input
+                  id="price"
+                  label="Price"
+                  formatPrice
+                  type="number"
+                  disabled={isLoading}
+                  register={register}
+                  errors={errors}
+                  required
+                />
                 <Counter 
                 title="Average product price"
                 subtitle="What is the average price of a single product in your store?"
@@ -181,6 +194,60 @@ const RentModal = () => {
             </div>
         )
       }
+
+      if (step === STEPS.DESCRIPTION) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading 
+                    title="Describe your store"
+                    subtitle="Keep it short and sweet!"
+                />
+                <Input 
+                  id="title"
+                  label="Title"
+                  disabled={isLoading}
+                  register={register}
+                  errors={errors}
+                  required
+                />
+                <hr />
+                <Input 
+                  id="description"
+                  label="Description"
+                  disabled={isLoading}
+                  register={register}
+                  errors={errors}
+                  required
+                />
+            </div>
+        )
+      }
+
+      if (step === STEPS.PRICE) {
+        bodyContent = (
+          <div
+          className="flex flex-col gap-8"
+          >
+            <Heading 
+              title="How much do you want to charge per visit?"
+              subtitle="Set a price for your private viewings and we'll take care of the rest!"
+            />
+            <Input
+              id="price"
+              label="Price"
+              formatPrice
+              type="number"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+          </div>
+
+
+        )
+      }
+
 
     return ( 
 
