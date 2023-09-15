@@ -14,6 +14,8 @@ import Heading from "../Heading";
 import CategoryInput from "../Inputs/CategoryInput";
 import CountrySelect from "../Inputs/CountrySelect";
 import dynamic from "next/dynamic";
+import Counter from "../Inputs/Counter";
+import ImageUpload from "../Inputs/ImageUpload";
 
 enum STEPS {
     CATEGORY = 0,
@@ -45,7 +47,9 @@ const RentModal = () => {
             category: '',
             location: null,
             imageSrc: '',
-            price: 1,
+            price: 0,
+            stockCount: 1,
+            avgProductPrice: 20,
             title: '',
             description: ''
         }
@@ -53,6 +57,9 @@ const RentModal = () => {
 
     const category = watch('category');
     const location = watch('location');
+    const stockCount = watch('stockCount');
+    const avgProductPrice = watch('avgProductPrice');
+    const imageSrc = watch('imageSrc');
 
     const Map = useMemo(() => dynamic(() => import('../Map'), { 
       ssr: false 
@@ -135,6 +142,45 @@ const RentModal = () => {
               </div>
         )
     } 
+
+    if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading 
+                    title="Tell us about your wardrobe"
+                    subtitle="Share some information about your clothes, store and what customers can expect when shopping with you!"
+                />
+                <Counter 
+                title="Stock"
+                subtitle="On average, how many items do you have in your store?"
+                value={stockCount}
+                onChange={(value) => setCustomValue('stockCount', value)}
+                />
+                <hr />
+                <Counter 
+                title="Average product price"
+                subtitle="What is the average price of a single product in your store?"
+                value={avgProductPrice}
+                onChange={(value) => setCustomValue('avgProductPrice', value)}
+                />
+            </div>
+        )
+      }
+
+      if (step === STEPS.IMAGES) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading 
+                    title="Show us your wardrobe"
+                    subtitle="Upload some images of your store so customers can see what you have to offer!"
+                />
+                <ImageUpload
+                    value={imageSrc}
+                    onChange={(value) => setCustomValue('imageSrc', value)}          
+                />
+            </div>
+        )
+      }
 
     return ( 
 
