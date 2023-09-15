@@ -4,8 +4,11 @@
 
 import useRentModal from "@/app/hooks/useRentModal";
 import { useMemo, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { categories } from "../Navbar/Categories";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 import Modal from "./Modal";
 import Heading from "../Heading";
@@ -31,6 +34,7 @@ enum STEPS {
 
 const RentModal = () => {
 
+    const router = useRouter();
     const rentModal = useRentModal()
 
     const [step, setStep] = useState(STEPS.CATEGORY);
@@ -82,6 +86,29 @@ const RentModal = () => {
 
     const onNext = () => {
         setStep((value) => value + 1);
+    }
+
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+      if (step !== STEPS.PRICE) {
+        return onNext();
+      }
+      setIsLoading(true);
+    
+      axios.post('/api/listings', data)
+        .then(() => {
+        toast.success('Listing created!');
+        router.refresh();
+        reset();
+        setStep(STEPS.CATEGORY)
+        rentModal.onClose();
+      })
+      .catch(() => {
+        toast.error('Something went wrong.');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })  
+
     }
 
     const actionLabel = useMemo(() => {
@@ -160,7 +187,13 @@ const RentModal = () => {
                 onChange={(value) => setCustomValue('stockCount', value)}
                 />
                 <hr />
-                <Input
+                <Counter 
+                title="Average product price"
+                subtitle="What is the average price of a single product in your store?"
+                value={avgProductPrice}
+                onChange={(value) => setCustomValue('avgProductPrice', value)}
+                />
+                {/* <Input
                   id="price"
                   label="Price"
                   formatPrice
@@ -169,13 +202,9 @@ const RentModal = () => {
                   register={register}
                   errors={errors}
                   required
-                />
-                <Counter 
-                title="Average product price"
-                subtitle="What is the average price of a single product in your store?"
-                value={avgProductPrice}
-                onChange={(value) => setCustomValue('avgProductPrice', value)}
-                />
+                  // value={avgProductPrice}
+                  // onChange={(value) => setCustomValue('avgProductPrice', value)}
+                /> */}
             </div>
         )
       }
@@ -254,7 +283,7 @@ const RentModal = () => {
         <Modal 
         isOpen={rentModal.isOpen}
         onClose={rentModal.onClose}
-        onSubmit={onNext}
+        onSubmit={handleSubmit(onSubmit)}
         actionLabel={actionLabel}  
         secondaryActionLabel={secondaryActionLabel}  
         secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}  
