@@ -55,7 +55,7 @@ const RentModal = () => {
             location: null,
             imageSrc: '',
             price: 0,
-            stockCount: 1,
+            stockCount: 50,
             avgProductPrice: 20,
             title: '',
             description: ''
@@ -131,7 +131,7 @@ const RentModal = () => {
         <div className="flex flex-col gap-8">
             <Heading 
                 title="Which category best describes your clothes?"
-                subtitle="Pick a category and we'll guide you through the rest!"
+                subtitle="Pick one category and we'll guide you through the rest!"
             />
             <div 
         className="
@@ -161,7 +161,7 @@ const RentModal = () => {
         bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading 
-                    title="Where are you located?"
+                    title="Where is your store located?"
                     subtitle="We need your location so customers can find your store 🌍"
                 />
                 <CountrySelect
@@ -233,7 +233,7 @@ const RentModal = () => {
                 />
                 <Input 
                   id="title"
-                  label="Title"
+                  label="Your store name - 'Stella's Vintage'"
                   disabled={isLoading}
                   register={register}
                   errors={errors}
@@ -242,7 +242,7 @@ const RentModal = () => {
                 <hr />
                 <Input 
                   id="description"
-                  label="Description"
+                  label="Description - 'Hey my names Stella and i love vintage desinger clothes!'"
                   disabled={isLoading}
                   register={register}
                   errors={errors}

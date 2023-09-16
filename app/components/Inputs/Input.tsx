@@ -5,7 +5,7 @@ import {
     FieldValues, 
     UseFormRegister 
 } from "react-hook-form";
-import { BiDollar } from "react-icons/bi";
+import { BiDollar, BiPound } from "react-icons/bi";
 
 interface InputProps {
     id: string;
@@ -41,13 +41,13 @@ const Input: React.FC<InputProps> = ({
         {subtitle && <div className="font-light text-gray-600">{subtitle}</div>}
         <div className="w-full relative">
             {formatPrice && (
-                <BiDollar
-                    size={24}
+                <BiPound
+                    size={23}
                     className="
-                    text-neutral-700
+                    text-gray-700
                     absolute
-                    top-5
-                    left-2
+                    top-8
+                    left-3
                     "
                 />
             )}
@@ -60,8 +60,8 @@ const Input: React.FC<InputProps> = ({
                 className={`
                 peer
                 w-full
-                p-4
-                pt-6
+                p-5
+                pt-8
                 font-light
                 bg-white
                 border-2
@@ -82,7 +82,7 @@ const Input: React.FC<InputProps> = ({
                 duration-150
                 transform
                 -translate-y-3
-                top-5
+                top-6
                 z-10
                 origin-[0]
                 ${formatPrice ? 'left-9' : 'left-4'}

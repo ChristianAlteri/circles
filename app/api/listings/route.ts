@@ -1,0 +1,43 @@
+import { NextResponse } from "next/server";
+
+import prisma from "@/app/libs/prismadb";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import { parse } from "path";
+
+export async function POST(
+  request: Request, 
+) {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    return NextResponse.error();
+  }
+
+  const body = await request.json();
+  const { 
+    title,
+    description,
+    imageSrc,
+    category,
+    stockCount,
+    avgProductPrice,
+    location,
+    price,
+   } = body;
+
+    const listing = await prisma.listing.create({
+      data: {
+        title,
+        description,
+        imageSrc,
+        category,
+        stockCount,
+        avgProductPrice,
+        location: location.value,
+        price: parseInt(price, 10),
+        userId: currentUser.id,
+      },
+    });
+
+    return NextResponse.json(listing);
+  }

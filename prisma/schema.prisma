@@ -54,10 +54,12 @@ model Listing {
   imageSrc String
   createdAt DateTime @default(now())
   category String
+  avgProductPrice Int
   stockCount Int
   userId String @db.ObjectId 
   price Int
-  avgProductPrice Int
+  location String
+
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
