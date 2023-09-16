@@ -6,6 +6,7 @@ const Search = () => {
     return ( 
         <div
             className="
+            border-2 border-green-500
             border-[1px]
             w-full
             md:w-auto

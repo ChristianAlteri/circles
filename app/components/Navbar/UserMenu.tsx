@@ -51,6 +51,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 <div
                     onClick={onSellWithUs}
                     className="
+                    
                     hidden
                     md:block
                     text-sm
@@ -67,11 +68,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 <div 
                     onClick={toggleOpen}
                     className="
+                    border-2 border-green-500
                     p-4
                     md:py-1
                     md:px-2
-                    border-[1px]
-                    border-neutral-200
+                    
                     flex
                     flex-row
                     items-center
@@ -91,6 +92,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             {isOpen && (
                 <div
                     className="
+                    border-2 border-green-500
                     absolute
                     rounded-xl
                     shadow-md
