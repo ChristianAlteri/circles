@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams } from 'next/navigation';
 
-
+import { GrDiamond } from "react-icons/gr";
 import { PiBabyBold, PiBalloonBold, PiGhostBold, PiHeartBold, PiMartiniBold, PiPantsBold, PiRecycleBold, PiScissorsBold, PiSnowflakeBold, PiSunBold, PiTennisBallBold, PiDressBold, PiNumberCircleEightBold } from "react-icons/pi";
 import { HiOutlineSparkles } from "react-icons/hi2";
 import { LiaHatCowboySolid } from "react-icons/lia";
@@ -16,7 +16,7 @@ import Container from '../Container';
 export const categories = [
       {
         label: "Rare",
-        icon: PiHeartBold,
+        icon: GrDiamond,
         description: "Discover our favourite pieces."
       },
       {
