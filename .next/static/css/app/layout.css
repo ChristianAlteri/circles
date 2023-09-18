@@ -596,6 +596,9 @@ video {
 .z-50 {
   z-index: 50;
 }
+.order-first {
+  order: -9999;
+}
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -609,6 +612,9 @@ video {
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 .ml-1 {
   margin-left: 0.25rem;
@@ -1070,6 +1076,19 @@ body,
   z-index: 0 !important;
 }
 
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrCalendarWrapper {
+  font-size: 16px !important;
+  width: 100% !important;
+}
+
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}
+
 .hover\:border-black:hover {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -1177,6 +1196,14 @@ body,
 }
 
 @media (min-width: 768px) {
+
+  .md\:order-last {
+    order: 9999;
+  }
+
+  .md\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
 
   .md\:block {
     display: block;

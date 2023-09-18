@@ -1,4 +1,4 @@
 {
-  "/page": "app/page.js",
+  "/api/reservations/route": "app/api/reservations/route.js",
   "/listings/[listingId]/page": "app/listings/[listingId]/page.js"
 }

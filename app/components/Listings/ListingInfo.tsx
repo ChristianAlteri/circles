@@ -100,8 +100,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                     flex
                     flex-row
                     gap-4
+                    hover:cursor-pointer
                     "
-                    
                     > 
                     {user?.name}
                             <Avatar src={user?.image} />
