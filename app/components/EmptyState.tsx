@@ -27,6 +27,8 @@ const EmptyState: React.FC<EmptyStateProps> = ({
         gap-2 
         justify-center 
         items-center 
+        text-center
+        p-8
       "
     >
       <Heading

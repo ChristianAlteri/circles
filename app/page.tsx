@@ -7,6 +7,10 @@ import getListings from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 
 
+// interface HomeProps {
+//   searchParams: IListingsParams;
+// }
+
 export default async function Home() {
   const listings = await getListings();
   const currentUser = await getCurrentUser(); 
@@ -49,3 +53,5 @@ export default async function Home() {
     </ClientOnly>
   );
 }
+
+

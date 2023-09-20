@@ -10,7 +10,7 @@ import ListingInfo from "@/app/components/Listings/ListingInfo";
 import { categories } from "@/app/components/Navbar/Categories";
 import ListingReservation from "@/app/components/Listings/ListingReservation";
 
-import useLoginModal from "@/app/hooks/useRentModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 
@@ -84,9 +84,7 @@ interface ListingClientProps {
       .then(() => {
         toast.success('Listing reserved!');
         setDateRange(initialDateRange);
-        // redirect to trips
-        // router.push('/trips');
-        router.refresh();
+        router.push('/trips');
       })
       .catch(() => {
         toast.error('Something went wrong.');
@@ -171,14 +169,6 @@ interface ListingClientProps {
               price={listing.price}
               location={listing.location}
             />
-            <div 
-              className="
-                order-first 
-                mb-10 
-                md:order-last 
-                md:col-span-3
-              "
-            >
               <ListingReservation
                 price={listing.price}
                 totalPrice={totalPrice}
@@ -188,6 +178,14 @@ interface ListingClientProps {
                 disabled={isLoading}
                 disabledDates={disabledDates}
               />
+            <div 
+              className="
+                order-first 
+                mb-10 
+                md:order-last 
+                md:col-span-3
+              "
+            >
             </div>
             </div>
             </div>

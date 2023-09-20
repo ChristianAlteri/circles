@@ -12,7 +12,8 @@ import { SafeUser } from "@/app/types";
 
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import useRentModal from "@/app/hooks/useRentModal";
+import useRentModal from "@/app/hooks/useRentModel";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -25,6 +26,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     const registerModal = useRegisterModal()
     const loginModal = useLoginModal()
     const rentModal = useRentModal()
+    const router = useRouter();
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -109,26 +111,28 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (
                         <>
                             <MenuItem
-                                onClick={()=> {}}
-                                label="My wardrobes"
-                            />
-                            <MenuItem
-                                onClick={()=> {}}
-                                label="My favorites"
-                            />
-                            <MenuItem
-                                onClick={()=> {}}
+                            // TODO: Change this route to my reservations /reservations
+                                onClick={()=> router.push('/trips')}
                                 label="My reservations"
                             />
+                            {/* <MenuItem
+                            // TODO: Change this route to my listings /listings
+                                onClick={()=> router.push('/reservations')}
+                                label="Reservations for my store"
+                            /> */}
                             <MenuItem
-                                onClick={()=> {}}
-                                label="My listings"
+                                onClick={() => router.push('/properties')}
+                                label="My store"
                             />
-                            <MenuItem
+                            {/* <MenuItem
                                 onClick={rentModal.onOpen}
-                                label="Sell your clothes!"
-                            />
+                                label="Add a store"
+                            /> */}
                             <hr />
+                            {/* <MenuItem
+                                onClick={()=> router.push('/favorites')}
+                                label="Following"
+                            /> */}
                             <MenuItem
                                 onClick={()=> signOut()}
                                 label="Logout"

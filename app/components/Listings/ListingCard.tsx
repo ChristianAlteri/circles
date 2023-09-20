@@ -1,7 +1,9 @@
+// TODO: Display the username of the person who booked the wardrobe when we click on the route 'My listings'
+
 'use client'
 
-import { SafeListing, SafeUser } from "@/app/types";
-import { Listing, Reservation } from "@prisma/client";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
+
 import { useRouter } from "next/navigation";
 import useCountries from "@/app/hooks/useCountries";
 import { useCallback, useMemo } from "react";
@@ -12,7 +14,7 @@ import Button from "../Button";
 
 interface ListingCardProps {
     data: SafeListing;
-    reservation?: Reservation;
+    reservation?: SafeReservation;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
@@ -61,6 +63,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     
         return data.avgProductPrice;
       }, [reservation, data.avgProductPrice]);
+
 
       const reservationDate = useMemo(() => {
         if (!reservation) {
