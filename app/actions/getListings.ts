@@ -1,18 +1,90 @@
 import prisma from "@/app/libs/prismadb"
 
-// export interface IListingsParams {
-//   userId?: String;
-// }
+export interface IListingsParams {
+    userId?: string;
+    avgProductPrice?: number;
+    stockCount?: number;
+    price?: number;
+    startDate?: string;
+    endDate?: string;
+    location?: string;
+    category?: string;
+  }
 
 // This is really where the power of the filters can come in  this is essentially filtering by created at
-// params: IListingsParams
-export default async function getListings() {
+
+export default async function getListings(
+    params: IListingsParams
+) {
     try {
 
+        const { 
+            userId,
+            avgProductPrice, 
+            stockCount, 
+            price, 
+            location,
+            startDate,
+            endDate,
+            category,
+        
+        } = params;
 
+        let query: any = {};
+
+        if (userId) {
+            query.userId = userId;
+          }
+      
+
+        if (category) {
+            query.category = category;
+          }
+      
+          if (avgProductPrice) {
+            query.avgProductPrice = {
+              gte: +avgProductPrice
+            }
+          }
+      
+          if (stockCount) {
+            query.stockCount = {
+              gte: +stockCount
+            }
+          }
+      
+          if (price) {
+            query.price = {
+              gte: +price
+            }
+          }
+      
+          if (location) {
+            query.location = location;
+          }
+      
+          if (startDate && endDate) {
+            query.NOT = {
+              reservations: {
+                some: {
+                  OR: [
+                    {
+                      endDate: { gte: startDate },
+                      startDate: { lte: startDate }
+                    },
+                    {
+                      startDate: { lte: endDate },
+                      endDate: { gte: endDate }
+                    }
+                  ]
+                }
+              }
+            }
+          }
 
         const listings = await prisma.listing.findMany({     
-          orderBy: {
+          where: query, 
+            orderBy: {
                 createdAt: 'desc'
             }
         });    

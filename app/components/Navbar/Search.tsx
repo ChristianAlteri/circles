@@ -1,15 +1,23 @@
 'use client'
 
+import useCountries from '@/app/hooks/useCountries';
+import usePriceModal from '@/app/hooks/usePriceModal';
 import useSearchModal from '@/app/hooks/useSearchModal';
+import { useSearchParams } from 'next/navigation';
 import { BiSearch } from 'react-icons/bi';
 
 const Search = () => {
 
     const searchModal = useSearchModal()
+    const priceModal = usePriceModal()
+    const params = useSearchParams()
+    const { getByValue } = useCountries
+
+    
 
     return ( 
         <div
-            onClick={searchModal.onOpen}
+            
             className="
             border-2 border-green-500
             border-[1px]
@@ -31,17 +39,37 @@ const Search = () => {
             justify-between
             "
             >
+                
                 <div
-                className="
-                text-sm
-                font-semibold
-                px-6
-                "
-                >
-                    {/* text to be displayed */}
-                    Any Brand   
+                    onClick={searchModal.onOpen}
+                    className="
+                    text-sm
+                    font-semibold
+                    px-6
+                    "
+                    >
+                        {/* Change to filter by brands */}
+                        Brand    
                 </div>
                 <div
+                // Make Price modal
+                    onClick={priceModal.onOpen}
+                    className="
+                    hidden
+                    sm:block
+                    text-sm
+                    font-semibold
+                    px-6
+                    border-x-[1px]
+                    flex-1
+                    text-center
+                    "
+                    >
+                        {/* Change to filter by brands */}
+                        Price    
+                </div>
+                <div
+                // Make size modal
                     className="
                     hidden
                     sm:block
@@ -54,7 +82,8 @@ const Search = () => {
                     "
                     >
                     {/* text to be displayed */}
-                    Any Seller
+                    {/* Change to filter by product price range and size */}
+                    Size
                 </div>   
                 <div
                     className="

@@ -2,6 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import Container from "../Container";
+import { GrHomeRounded } from "react-icons/gr";
+import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
+import { TbWorldSearch } from "react-icons/tb";
+import { PiAlienBold, PiUploadSimpleBold } from "react-icons/pi";
 
 const Footer = () => {
     const router = useRouter();
@@ -14,11 +18,12 @@ const Footer = () => {
              left-0 
              right-0 
              bg-white
-             p-4
+             p-2
              flex 
              flex-row 
              justify-center
-             gap-3
+             gap-6
+             border-t-2
             ">
                 <div
                 className="
@@ -32,79 +37,55 @@ const Footer = () => {
                         flex-shrink-0 
                         px-2 
                         py-2 
-                        bg-green-500 
                         text-white 
                         font-semibold 
                         rounded
                         ">
-                            Following
-                        </button>
-                    </div>
-                <hr />
-                <div
-                className="
-                flex
-                flex-row
-                ">
-                        <button 
-                        onClick={()=> router.push('/explore')}
-                        className="
-                        flex-grow-0 
-                        flex-shrink-0 
-                        px-2 
-                        py-2 
-                        bg-green-500 
-                        text-white 
-                        font-semibold 
-                        rounded
-                        ">
-                            Explore
-                        </button>
-                    </div>
-                <hr />
-                <div
-                className="
-                flex
-                flex-row
-                ">
-                        <button 
-                        onClick={()=> router.push('/explore')}
-                        className="
-                        flex-grow-0 
-                        flex-shrink-0 
-                        px-2 
-                        py-2 
-                        bg-green-500 
-                        text-white 
-                        font-semibold 
-                        rounded
-                        ">
-                            Upload 
-                        </button>
-                    </div>
-                <hr />
-                <div
-                className="
-                flex
-                flex-row
-                ">
-                        <button 
-                        onClick={()=> router.push('/explore')}
-                        className="
-                        flex-grow-0 
-                        flex-shrink-0 
-                        px-2 
-                        py-2 
-                        bg-green-500 
-                        text-white 
-                        font-semibold 
-                        rounded
-                        ">
-                            Staff picks
-                        </button>
-                    </div>
-                <hr />
 
+                        <GrHomeRounded style={{ fontSize: '34px' }} />
+                        </button>
+                    </div>
+                <hr />
+                <div
+                className="
+                flex
+                flex-row
+                ">
+                        <button 
+                        onClick={()=> router.push('/explore')}
+                        className="
+                        flex-grow-0 
+                        flex-shrink-0 
+                        px-2 
+                        py-2 
+                        text-white 
+                        font-semibold 
+                        rounded
+                        ">
+                            <TbWorldSearch style={{ fontSize: '38px', color: 'black'  }} />
+                        </button>
+                    </div>
+                <hr />
+                <div
+                className="
+                flex
+                flex-row
+                ">
+                        <button 
+                        onClick={()=> router.push('/explore')}
+                        className="
+                        flex-grow-0 
+                        flex-shrink-0 
+                        px-2 
+                        py-2 
+                        text-white 
+                        font-semibold 
+                        rounded
+                        ">
+                            <PiUploadSimpleBold style={{ fontSize: '38px', color: 'black'  }}/>
+                        </button>
+                    </div>
+                <hr />
                     <div
                     className="
                     flex
@@ -117,12 +98,11 @@ const Footer = () => {
                         flex-shrink-0 
                         px-2 
                         py-2 
-                        bg-green-500 
                         text-white 
                         font-semibold 
                         rounded
                         ">
-                            Profile
+                            <PiAlienBold  style={{ fontSize: '38px', color: 'black'  }}/>
                         </button>
                     </div>
                 <hr />
